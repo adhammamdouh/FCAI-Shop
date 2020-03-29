@@ -12,7 +12,7 @@ namespace FCAI_Shop.Controllers
 {
     public class UsersController : Controller
     {
-        private ApplicationDbContext db = DbContext.Database.context;
+        private ApplicationDbContext db = DbContext.DatabaseManager.Context;
 
         // GET: Users
         public ActionResult Index()

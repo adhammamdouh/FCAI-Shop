@@ -10,26 +10,31 @@ namespace FCAI_Shop.Models
 {
     public abstract class ApplicationUser
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, Column(Order = 0),DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [Required, Index(IsUnique = true), StringLength(Constants.Numbers.DefaultStringLength)]
+        public string Email { get; set; }
+
+        [Required, Index(IsUnique = true), StringLength(Constants.Numbers.DefaultStringLength)]
+        public string UserName { get; set; }
 
         [Required]
         public string Name { get; set; }
-        [Required]
+
+        [Required, StringLength(Constants.Numbers.DefaultStringLength)]
         public string Password { get; set; }
-        [Required]
-        public string Email { get; set; }
 
-        [Required]
-        public string Username { get; set; }
+        [StringLength(Constants.Numbers.DefaultStringLength)]
+        public string UserRoles { get; set; }
 
-        protected ApplicationUser(string name, string password, string email, string username)
+        protected ApplicationUser(string name, string password, string email, string userName,string userRoles)
         {
             Name = name;
             Password = password;
             Email = email;
-            Username = username;
+            UserName = userName;
+            UserRoles = userRoles;
         }
     }
     public class ApplicationDbContext : System.Data.Entity.DbContext

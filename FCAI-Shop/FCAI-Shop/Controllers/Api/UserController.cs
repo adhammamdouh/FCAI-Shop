@@ -17,7 +17,7 @@ namespace FCAI_Shop.Controllers.API
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public IEnumerable<User> GetUsers()
         {
-            var x = UserManager.GetAllUsers().ToList();
+            IEnumerable<User> x = UserManager.GetAllUsers().ToList();
 
             return x;
         }

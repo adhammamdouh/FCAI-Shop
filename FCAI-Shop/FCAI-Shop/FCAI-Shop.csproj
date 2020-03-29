@@ -137,27 +137,28 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Constants\Numbers.cs" />
+    <Compile Include="Constants\Roles.cs" />
     <Compile Include="Controllers\Api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DbContext\AdminManager.cs" />
-    <Compile Include="DbContext\Database.cs" />
+    <Compile Include="DbContext\DatabaseManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003282212106_first-step.cs" />
-    <Compile Include="Migrations\202003282212106_first-step.designer.cs">
-      <DependentUpon>202003282212106_first-step.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003282240103_second-step.cs" />
-    <Compile Include="Migrations\202003282240103_second-step.designer.cs">
-      <DependentUpon>202003282240103_second-step.cs</DependentUpon>
+    <Compile Include="Migrations\202003291815348_test.cs" />
+    <Compile Include="Migrations\202003291815348_test.designer.cs">
+      <DependentUpon>202003291815348_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="DbContext\UserManager.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\ApplicationUserViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,11 +220,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003282212106_first-step.resx">
-      <DependentUpon>202003282212106_first-step.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003282240103_second-step.resx">
-      <DependentUpon>202003282240103_second-step.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003291815348_test.resx">
+      <DependentUpon>202003291815348_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

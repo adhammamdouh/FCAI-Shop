@@ -7,13 +7,13 @@ namespace FCAI_Shop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class firststep : IMigrationMetadata
+    public sealed partial class test : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(firststep));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003282212106_first-step"; }
+            get { return "202003291815348_test"; }
         }
         
         string IMigrationMetadata.Source
