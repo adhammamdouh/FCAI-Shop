@@ -10,6 +10,10 @@ namespace FCAI_Shop.Models
     [Table("Admin")]
     public class Admin : ApplicationUser
     {
+        private Admin() : base("", "", "", "", "")
+        {
+
+        }
         public Admin(string name, string password, string email, string username) : base(name, password, email, username,Roles.Admin)
         {
         }

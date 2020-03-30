@@ -6,13 +6,18 @@ using FCAI_Shop.Models;
 
 namespace FCAI_Shop.DbContext
 {
-    public static class DatabaseManager
+    public class DatabaseManager : IDisposable
     {
-        public static ApplicationDbContext Context { get; } = new ApplicationDbContext();
+        private ApplicationDbContext _context;
 
-        public static void Dispose()
+        public ApplicationDbContext Create()
         {
-            Context.Dispose();
+            _context = new ApplicationDbContext();
+            return _context;
+        }
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace FCAI_Shop.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202003291815348_test"; }
+            get { return "202003292054464_test"; }
         }
         
         string IMigrationMetadata.Source

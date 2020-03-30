@@ -12,6 +12,10 @@ namespace FCAI_Shop.Models
     [Table("User")]
     public class User : ApplicationUser
     {
+        private User() : base("", "", "", "", "")
+        {
+
+        }
         public User(string name, string password, string email, string username) : base(name, password, email, username,Roles.User)
         {
         }
