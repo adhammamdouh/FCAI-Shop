@@ -8,7 +8,7 @@ using Microsoft.Ajax.Utilities;
 namespace FCAI_Shop.DbContext
 {
     // To validate user and returns user data
-    public class ApplicationUserRepository
+    public static class ApplicationUserRepository
     {
         // username maybe email or username
         public static ApplicationUser ValidateUser(string username, string password)
