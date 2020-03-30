@@ -14,7 +14,6 @@ namespace FCAI_Shop.DbContext
 #pragma warning disable 1998
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            var x = 5;
             context.Validated();
         }
 
@@ -30,7 +29,7 @@ namespace FCAI_Shop.DbContext
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Role, user.UserRoles));
-            identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
             context.Validated(identity);
 
         }
