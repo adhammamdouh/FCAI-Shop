@@ -18,9 +18,10 @@ namespace FCAI_Shop.Models
         public Admin(string name, string password, string email, string username) : base(name, password, email, username,Roles.Admin)
         {
         }
-        public AdminViewModel ToViewModel()
+        public new AdminViewModel ToViewModel()
         {
             return new AdminViewModel { Email = this.Email, Name = this.Name, UserName = this.UserName };
         }
     }
+
 }
