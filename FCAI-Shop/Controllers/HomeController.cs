@@ -13,8 +13,7 @@ namespace FCAI_Shop.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
-            return View();
+            return RedirectToAction("Index","Help");
         }
     }
 }

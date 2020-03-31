@@ -28,5 +28,12 @@ namespace FCAI_Shop.DbContext
             }
 
         }
+        public static IEnumerable<ApplicationUser> GetAllApplicationUsers()
+        {
+            using (var context = new DatabaseManager().Create())
+            {
+                return context.ApplicationUsers.ToList();
+            }
+        }
     }
 }

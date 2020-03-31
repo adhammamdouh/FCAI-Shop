@@ -8,17 +8,10 @@ namespace FCAI_Shop.ViewModels
 {
     public class ApplicationUserViewModel
     {
-        public string Name { get; }
-        public string Password { get; }
-        public string Email { get; }
-        public string UserName { get; }
+        public string Name { get; set; }
+        public string Role { get; set; }
+        public string Email { get; set; }
+        public string UserName { get; set; }
 
-        public ApplicationUserViewModel(ApplicationUser user)
-        {
-            Name = user.Name;
-            Password = user.Password;
-            Email = user.Email;
-            UserName = user.UserName;
-        }
     }
 }

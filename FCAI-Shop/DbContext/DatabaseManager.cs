@@ -15,6 +15,7 @@ namespace FCAI_Shop.DbContext
             _context = new ApplicationDbContext();
             return _context;
         }
+
         public void Dispose()
         {
             _context.Dispose();

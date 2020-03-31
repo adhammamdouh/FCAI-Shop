@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "FCAI_Shop.Models.ApplicationDbContext";
         }
 
         protected override void Seed(FCAI_Shop.Models.ApplicationDbContext context)

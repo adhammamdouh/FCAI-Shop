@@ -19,6 +19,11 @@ namespace FCAI_Shop
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute(
+                name: "DefaultHome",
+                routeTemplate: "Help/Index/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
         }
     }
 }

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using FCAI_Shop.ViewModels;
 
 namespace FCAI_Shop.Models
 {
@@ -35,6 +36,10 @@ namespace FCAI_Shop.Models
             Email = email;
             UserName = userName;
             UserRoles = userRoles;
+        }
+        public ApplicationUserViewModel ToViewModel()
+        {
+            return new ApplicationUserViewModel { Email = this.Email, Name = this.Name, UserName = this.UserName, Role = this.UserRoles };
         }
     }
     public class ApplicationDbContext : System.Data.Entity.DbContext

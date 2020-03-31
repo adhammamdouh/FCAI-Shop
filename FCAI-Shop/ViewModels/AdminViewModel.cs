@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using FCAI_Shop.Models;
-using FCAI_Shop.ViewModels;
-
-namespace FCAI_Shop.ModelViews
+﻿namespace FCAI_Shop.ViewModels
 {
-    public class AdminModelView : ApplicationUserViewModel
+    public class AdminViewModel : ApplicationUserViewModel
     {
-        AdminModelView(Admin admin):base(admin)
-        {
-
-        }
     }
 }
