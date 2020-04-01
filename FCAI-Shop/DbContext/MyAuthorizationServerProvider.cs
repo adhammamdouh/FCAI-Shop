@@ -10,13 +10,14 @@ namespace FCAI_Shop.DbContext
 {
     public class MyAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
+        //private ApplicationUserRepository repo; // for class diagram only
 
 #pragma warning disable 1998
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
         }
-
+        
 #pragma warning disable 1998
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {

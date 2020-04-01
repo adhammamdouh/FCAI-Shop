@@ -16,13 +16,13 @@ namespace FCAI_Shop
         {
             // Enable CORS (cross origin resource sharing) for making request using browser from different domains
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
+            
             OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions
             {
                 AllowInsecureHttp = true,
 
-                //The Path For generating the Toekn
-                TokenEndpointPath = new PathString("/token"),
+                //The Path For generating the Token
+                TokenEndpointPath = new PathString("/Login"),
 
                 //Setting the Token Expired Time (24 hours)
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
@@ -30,7 +30,7 @@ namespace FCAI_Shop
                 //MyAuthorizationServerProvider class will validate the user credentials
                 Provider = new MyAuthorizationServerProvider()
             };
-
+            
             //Token Generations
             app.UseOAuthAuthorizationServer(options);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());

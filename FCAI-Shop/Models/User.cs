@@ -7,24 +7,25 @@ using System.Web;
 using System.Web.UI.WebControls;
 using FCAI_Shop.Constants;
 using FCAI_Shop.DbContext;
-using FCAI_Shop.ViewModels;
+using FCAI_Shop.Dtos;
 
 namespace FCAI_Shop.Models
 {
-    [Table("User")]
+    [Table("Users")]
     public class User : ApplicationUser
     {
-        private User() : base("", "", "", "", "")
+        private User()
         {
 
         }
-        public User(string name, string password, string email, string username) : base(name, password, email, username,Roles.User)
+        public User(UserDto user) : base(user, Roles.User)
         {
+        }
+        public new UserDto ToDto()
+        {
+            return new UserDto
+            { Email = this.Email, Name = this.Name, Password = this.Password, UserName = this.UserName };
         }
 
-        public UserViewModel ToViewModel()
-        {
-            return new UserViewModel{Email = this.Email,Name = this.Name,UserName = this.UserName};
-        }
     }
 }

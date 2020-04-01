@@ -4,24 +4,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using FCAI_Shop.Constants;
-using FCAI_Shop.ViewModels;
+using FCAI_Shop.Dtos;
+
 
 namespace FCAI_Shop.Models
 {
-    [Table("Admin")]
+    [Table("Admins")]
     public class Admin : ApplicationUser
     {
-        private Admin() : base("", "", "", "", "")
+        private Admin()
         {
 
         }
-        public Admin(string name, string password, string email, string username) : base(name, password, email, username,Roles.Admin)
+        public Admin(AdminDto admin) : base(admin,Roles.Admin)
         {
         }
-        public new AdminViewModel ToViewModel()
+
+        public new AdminDto ToDto()
         {
-            return new AdminViewModel { Email = this.Email, Name = this.Name, UserName = this.UserName };
+            return new AdminDto
+                {Email = this.Email, Name = this.Name, Password = this.Password, UserName = this.UserName};
         }
+
     }
 
 }

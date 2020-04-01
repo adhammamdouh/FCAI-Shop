@@ -7,13 +7,13 @@ namespace FCAI_Shop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class test : IMigrationMetadata
+    public sealed partial class database : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(database));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003301859312_test"; }
+            get { return "202004010453024_database"; }
         }
         
         string IMigrationMetadata.Source

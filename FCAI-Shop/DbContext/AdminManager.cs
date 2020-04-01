@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FCAI_Shop.Constants;
+using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
 
 namespace FCAI_Shop.DbContext
 {
     public class AdminManager
     {
-        
 
+        //private static Admin admin; // for class diagram only
+        //private static DatabaseManager DbContext = new DatabaseManager(); // for class diagram only
         public static Admin FindAdminById(int id)
         {
             using (var context = new DatabaseManager().Create())
@@ -33,18 +36,19 @@ namespace FCAI_Shop.DbContext
                 return context.Admins.FirstOrDefault(admin => admin.UserName.Equals(adminName));
             }
         }
-        public static int? AddAdmin(Admin admin)
+        public static int? AddAdmin(AdminDto admin)
         {
             /*if (FindAdminByEmail(Admin.Email) != null || FindAdminByUserName(Admin.UserName) != null)
                 return null;*/
+            
             using (var context = new DatabaseManager().Create())
             {
-                context.Admins.Add(admin);
+                var addedAdmin = context.Admins.Add(new Admin(admin));
 
                 if (context.SaveChanges() == 0)
                     return null; // returns number of affected rows
 
-                return admin.Id;
+                return addedAdmin.Id;
             }
         }
         public static IEnumerable<Admin> GetAllAdmins()

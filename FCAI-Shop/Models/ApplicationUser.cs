@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
-using FCAI_Shop.ViewModels;
+using FCAI_Shop.Dtos;
+
 
 namespace FCAI_Shop.Models
 {
@@ -14,32 +16,44 @@ namespace FCAI_Shop.Models
         [Key, Column(Order = 0),DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+
         [Required, Index(IsUnique = true), StringLength(Constants.Numbers.DefaultStringLength)]
         public string Email { get; set; }
 
-        [Required, Index(IsUnique = true), StringLength(Constants.Numbers.DefaultStringLength)]
-        public string UserName { get; set; }
 
         [Required]
         public string Name { get; set; }
 
+
+        [Required, Index(IsUnique = true), StringLength(Constants.Numbers.DefaultStringLength)]
+        public string UserName { get; set; }
+
+
+
         [Required, StringLength(Constants.Numbers.DefaultStringLength)]
         public string Password { get; set; }
+
 
         [StringLength(Constants.Numbers.DefaultStringLength)]
         public string UserRoles { get; set; }
 
-        protected ApplicationUser(string name, string password, string email, string userName,string userRoles)
+        protected ApplicationUser(ApplicationUserDto applicationUser,string userRoles)
         {
-            Name = name;
-            Password = password;
-            Email = email;
-            UserName = userName;
+            Name = applicationUser.Name;
+            Password = applicationUser.Password;
+            Email = applicationUser.Email;
+            UserName = applicationUser.UserName;
             UserRoles = userRoles;
         }
-        public ApplicationUserViewModel ToViewModel()
+
+        protected ApplicationUser()
         {
-            return new ApplicationUserViewModel { Email = this.Email, Name = this.Name, UserName = this.UserName, Role = this.UserRoles };
+
+        }
+        public ApplicationUserDto ToDto()
+        {
+            return new ApplicationUserDto
+                { Email = this.Email, Name = this.Name, Password = this.Password, UserName = this.UserName };
         }
     }
     public class ApplicationDbContext : System.Data.Entity.DbContext

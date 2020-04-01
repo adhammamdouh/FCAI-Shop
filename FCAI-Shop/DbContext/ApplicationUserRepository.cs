@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
 using Microsoft.Ajax.Utilities;
 
 namespace FCAI_Shop.DbContext
 {
     // To validate user and returns user data
-    public static class ApplicationUserRepository
+    public  class ApplicationUserRepository
     {
         // username maybe email or username
+        //private static ApplicationUser user; // for class diagram only
+        //private DatabaseManager DbContext = new DatabaseManager(); // for class diagram only
         public static ApplicationUser ValidateUser(string username, string password)
         {
             using (var context = new DatabaseManager().Create())
@@ -28,11 +31,11 @@ namespace FCAI_Shop.DbContext
             }
 
         }
-        public static IEnumerable<ApplicationUser> GetAllApplicationUsers()
+        public static IEnumerable<ApplicationUserDto> GetAllApplicationUsers()
         {
             using (var context = new DatabaseManager().Create())
             {
-                return context.ApplicationUsers.ToList();
+                return context.ApplicationUsers.ToList().Select(applicationUser => applicationUser.ToDto());
             }
         }
     }

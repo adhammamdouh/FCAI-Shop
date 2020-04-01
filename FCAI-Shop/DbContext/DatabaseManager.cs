@@ -8,12 +8,11 @@ namespace FCAI_Shop.DbContext
 {
     public class DatabaseManager : IDisposable
     {
-        private ApplicationDbContext _context;
+        private ApplicationDbContext _context; 
 
         public ApplicationDbContext Create()
         {
-            _context = new ApplicationDbContext();
-            return _context;
+            return _context = ApplicationDbContext.Create();
         }
 
         public void Dispose()

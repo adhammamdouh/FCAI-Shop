@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FCAI_Shop.Constants;
 using FCAI_Shop.DbContext;
+using FCAI_Shop.Dtos;
 
 namespace FCAI_Shop.Models
 {
-    public static class UserManager
+    public class UserManager
     {
-
+        //private static User user; // for class diagram only
+        //private static DatabaseManager DbContext = new DatabaseManager(); // for class diagram only
         public static User FindUserById(int id)
         {
             using (var context = new DatabaseManager().Create())
@@ -31,19 +34,20 @@ namespace FCAI_Shop.Models
                 return context.Users.FirstOrDefault(user => user.UserName.Equals(userName));
             }
         }
-        public static int? AddUser(User user)
+        public static int? AddUser(UserDto user)
         {
-           /* if (FindUserByEmail(user.Email) != null || FindUserByUserName(user.UserName) != null)
-                return null;*/
-           using (var context = new DatabaseManager().Create())
-           {
-               context.Users.Add(user);
+            /* if (FindUserByEmail(user.Email) != null || FindUserByUserName(user.UserName) != null)
+                 return null;*/
+            
+            using (var context = new DatabaseManager().Create())
+            {
+                var addedUser = context.Users.Add(new User(user));
 
-               if (context.SaveChanges() == 0)
-                   return null;
+                if (context.SaveChanges() == 0)
+                    return null;
 
-               return user.Id;
-           }
+                return addedUser.Id;
+            }
         }
         public static IEnumerable<User> GetAllUsers()
         {
