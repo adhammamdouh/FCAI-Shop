@@ -17,7 +17,7 @@ namespace FCAI_Shop.Models
         public int Id { get; set; }
 
 
-        [Required, Index(IsUnique = true), StringLength(Constants.Numbers.DefaultStringLength)]
+        [Required, Index(IsUnique = true), StringLength(Constants.Numbers.DefaultStringLength),DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
 

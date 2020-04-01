@@ -13,7 +13,7 @@ namespace FCAI_Shop.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202004010453024_database"; }
+            get { return "202004010456295_database"; }
         }
         
         string IMigrationMetadata.Source

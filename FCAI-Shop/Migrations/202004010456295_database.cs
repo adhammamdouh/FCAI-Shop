@@ -41,7 +41,6 @@
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.ApplicationUsers", t => t.Id)
                 .Index(t => t.Id);
-
             Sql("insert into [dbo].[ApplicationUsers] values ('belal@gmail.com','belal','belal','123','Admin')");
             Sql("insert into [dbo].[ApplicationUsers] values ('felecia.herrera@example.com','Felecia','Herrera','123','Admin')");
             Sql("insert into [dbo].[ApplicationUsers] values ('akseli.jutila@example.com','Akseli','Jutila','123','Admin')");
@@ -105,7 +104,6 @@
             Sql("insert into [dbo].[Users] values (28)");
             Sql("insert into [dbo].[Users] values (29)");
             Sql("insert into [dbo].[Users] values (30)");
-
         }
         
         public override void Down()
