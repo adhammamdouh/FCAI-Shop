@@ -1,5 +1,7 @@
-﻿namespace FCAI_Shop.Migrations
+﻿
+namespace FCAI_Shop.Migrations
 {
+#pragma warning disable 1591
     using System;
     using System.Data.Entity.Migrations;
     

@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using FCAI_Shop.Constants;
 using FCAI_Shop.DbContext;
 using FCAI_Shop.Dtos;
+#pragma warning disable 1591
 
 namespace FCAI_Shop.Models
 {
@@ -24,7 +25,7 @@ namespace FCAI_Shop.Models
         public new UserDto ToDto()
         {
             return new UserDto
-            { Email = this.Email, Name = this.Name, Password = this.Password, UserName = this.UserName };
+            { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName };
         }
 
     }

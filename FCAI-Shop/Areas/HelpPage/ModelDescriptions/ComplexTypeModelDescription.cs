@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using System.Collections.ObjectModel;
 
 namespace FCAI_Shop.Areas.HelpPage.ModelDescriptions

@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-
+#pragma warning disable 1591
 namespace FCAI_Shop.Controllers
 {
     [AllowAnonymous]

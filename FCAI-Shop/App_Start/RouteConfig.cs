@@ -7,8 +7,15 @@ using System.Web.Routing;
 
 namespace FCAI_Shop
 {
+    /// <summary>
+    /// Configures Routing
+    /// </summary>
     public class RouteConfig
     {
+        /// <summary>
+        /// Registering Routes
+        /// </summary>
+        /// <param name="routes"></param>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

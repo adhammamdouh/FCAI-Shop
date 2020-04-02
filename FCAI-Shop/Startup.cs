@@ -5,6 +5,7 @@ using FCAI_Shop.DbContext;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+#pragma warning disable 1591
 
 [assembly: OwinStartup(typeof(FCAI_Shop.Startup))]
 

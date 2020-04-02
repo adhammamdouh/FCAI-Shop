@@ -12,6 +12,8 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using FCAI_Shop.Dtos;
+
 #if Handle_PageResultOfT
 using System.Web.Http.OData;
 #endif
@@ -25,6 +27,10 @@ namespace FCAI_Shop.Areas.HelpPage
     /// </summary>
     public static class HelpPageConfig
     {
+        /// <summary>
+        /// Register Configuration for help page
+        /// </summary>
+        /// <param name="config"></param>
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
             MessageId = "FCAI_Shop.Areas.HelpPage.TextSample.#ctor(System.String)",
             Justification = "End users may choose to merge this string with existing localized resources.")]
@@ -34,16 +40,16 @@ namespace FCAI_Shop.Areas.HelpPage
         public static void Register(HttpConfiguration config)
         {
             //// Uncomment the following to use the documentation from XML documentation file.
-            //config.SetDocumentationProvider(new XmlDocumentationProvider(HttpContext.Current.Server.MapPath("~/App_Data/XmlDocument.xml")));
+            config.SetDocumentationProvider(new XmlDocumentationProvider(HttpContext.Current.Server.MapPath("~/App_Data/XmlDocument.xml")));
 
             //// Uncomment the following to use "sample string" as the sample for all actions that have string as the body parameter or return type.
             //// Also, the string arrays will be used for IEnumerable<string>. The sample objects will be serialized into different media type 
             //// formats by the available formatters.
-            //config.SetSampleObjects(new Dictionary<Type, object>
-            //{
-            //    {typeof(string), "sample string"},
-            //    {typeof(IEnumerable<string>), new string[]{"sample 1", "sample 2"}}
-            //});
+            config.SetSampleObjects(new Dictionary<Type, object>
+            {
+                {typeof(string), "sample string"},
+                {typeof(IEnumerable<string>), new string[]{"sample 1", "sample 2"}}
+            });
 
             // Extend the following to provide factories for types not handled automatically (those lacking parameterless
             // constructors) or for which you prefer to use non-default property values. Line below provides a fallback
@@ -61,7 +67,9 @@ namespace FCAI_Shop.Areas.HelpPage
 
             //// Uncomment the following to use "[0]=foo&[1]=bar" directly as the sample for all actions that support form URL encoded format
             //// and have IEnumerable<string> as the body parameter or return type.
-            //config.SetSampleForType("[0]=foo&[1]=bar", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(IEnumerable<string>));
+            config.SetSampleForType("[Email]=Email | [Name]=Name | [Password]=Password | [UserName]=UserName", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(AdminDto));
+            config.SetSampleForType("[Email]=Email | [Name]=Name | [Password]=Password | [UserName]=UserName", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(UserDto));
+            config.SetSampleForType("[Email]=Email | [Name]=Name | [Password]=Password | [UserName]=UserName", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(ApplicationUserDto));
 
             //// Uncomment the following to use "1234" directly as the request sample for media type "text/plain" on the controller named "Values"
             //// and action named "Put".

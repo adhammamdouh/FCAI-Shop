@@ -5,6 +5,7 @@ using System.Web;
 using FCAI_Shop.Constants;
 using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
+#pragma warning disable 1591
 
 namespace FCAI_Shop.DbContext
 {

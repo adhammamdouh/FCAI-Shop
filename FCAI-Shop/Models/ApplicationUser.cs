@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 using FCAI_Shop.Dtos;
+#pragma warning disable 1591
 
 
 namespace FCAI_Shop.Models
@@ -53,7 +54,7 @@ namespace FCAI_Shop.Models
         public ApplicationUserDto ToDto()
         {
             return new ApplicationUserDto
-                { Email = this.Email, Name = this.Name, Password = this.Password, UserName = this.UserName };
+                { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName };
         }
     }
     public class ApplicationDbContext : System.Data.Entity.DbContext

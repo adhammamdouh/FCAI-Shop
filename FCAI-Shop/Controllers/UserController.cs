@@ -9,11 +9,20 @@ using FCAI_Shop.Models;
 namespace FCAI_Shop.Controllers
 {
 
+    /// <summary>
+    /// Controller for users
+    /// </summary>
     [Authorize(Roles = Roles.Admin + "," + Roles.User)]
     public class UserController : ApiController
     {
         //private UserManager UserManager; // for class diagram only
         //public User user;
+        /// <summary>
+        /// Registers for a new user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         [AllowAnonymous]
         [Route("api/User/Register")]
         public IHttpActionResult Register([FromBody] UserDto user)

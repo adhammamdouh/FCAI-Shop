@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Owin.Security.OAuth;
+#pragma warning disable 1591
+#pragma warning disable 1998
 
 namespace FCAI_Shop.DbContext
 {
@@ -12,13 +14,11 @@ namespace FCAI_Shop.DbContext
     {
         //private ApplicationUserRepository repo; // for class diagram only
 
-#pragma warning disable 1998
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
         }
         
-#pragma warning disable 1998
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var user = ApplicationUserRepository.ValidateUser(context.UserName, context.Password);

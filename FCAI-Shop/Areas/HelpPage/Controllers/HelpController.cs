@@ -3,7 +3,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using FCAI_Shop.Areas.HelpPage.ModelDescriptions;
 using FCAI_Shop.Areas.HelpPage.Models;
-
+#pragma warning disable 1591
 namespace FCAI_Shop.Areas.HelpPage.Controllers
 {
     /// <summary>
@@ -12,6 +12,7 @@ namespace FCAI_Shop.Areas.HelpPage.Controllers
     public class HelpController : Controller
     {
         private const string ErrorViewName = "Error";
+
 
         public HelpController()
             : this(GlobalConfiguration.Configuration)

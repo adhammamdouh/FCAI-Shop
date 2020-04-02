@@ -30,6 +30,22 @@
         </div>
     </section>
     <section class="content-wrapper main-content clear-fix">
+        <h2>Account</h2>
+        <table class="help-page-table">
+            <thread>
+        <tr><th>API</th><th>Description</th></tr>
+    </thread>
+    <tbody>
+        <tr>
+            <td class="api-name">Login</td>
+            <td class="api-documentation">
+                Pass your user name and passowrd and grant_type = passwords in body with calling "/Login" and returns your access token.
+            </td>
+        </tr>
+    </tbody>
+</table>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
         @foreach (var group in apiGroups)
         {
             @Html.DisplayFor(m => group, "ApiGroup")

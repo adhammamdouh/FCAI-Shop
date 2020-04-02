@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using System.Web;
 using System.Web.Http.Description;
-
+#pragma warning disable 1591
 namespace FCAI_Shop.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions

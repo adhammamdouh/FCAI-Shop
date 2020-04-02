@@ -15,6 +15,9 @@ using FCAI_Shop.Models;
 namespace FCAI_Shop.Controllers
 {
 
+    /// <summary>
+    /// Controller for admins
+    /// </summary>
     [Authorize(Roles = Roles.Admin)]
     public class AdminController : ApiController
     {
@@ -22,6 +25,10 @@ namespace FCAI_Shop.Controllers
         // GET
         // API/User/GetAllUsers
 
+        /// <summary>
+        /// Gets all application users (Admins and Users) but requires admin privilege.
+        /// </summary>
+        /// <returns></returns>
         [Route("api/Admin/GetAllApplicationUsers")]
         public IEnumerable<ApplicationUserDto> GetAllApplicationUsers()
         {
@@ -29,6 +36,10 @@ namespace FCAI_Shop.Controllers
             return ApplicationUserRepository.GetAllApplicationUsers();
         }
 
+        /// <summary>
+        /// Gets all admins but requires admin privilege.
+        /// </summary>
+        /// <returns></returns>
         [Route("api/Admin/GetAllAdmins")]
         public IEnumerable<AdminDto> GetAllAdmins()
         {
@@ -36,6 +47,10 @@ namespace FCAI_Shop.Controllers
             return AdminManager.GetAllAdmins().Select(admin => admin.ToDto());
         }
 
+        /// <summary>
+        /// Gets all users but requires admin privilege.
+        /// </summary>
+        /// <returns></returns>
         [Route("api/Admin/GetAllUsers")]
         public IEnumerable<UserDto> GetAllUsers()
         {
@@ -43,6 +58,12 @@ namespace FCAI_Shop.Controllers
         }
 
         // no one can register admin unless if he was an admin
+        /// <summary>
+        /// Registers for admin but requires admin privilege.
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         [Route("api/Admin/Register")]
         public IHttpActionResult Register([FromBody] AdminDto admin)
         {
@@ -56,6 +77,7 @@ namespace FCAI_Shop.Controllers
                 return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Failed To Add Admin"));
             }
 
+            
             return Ok();
         }
     }

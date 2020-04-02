@@ -7,8 +7,15 @@ using Newtonsoft.Json.Serialization;
 
 namespace FCAI_Shop
 {
+    /// <summary>
+    /// Wrapper for Registering API
+    /// </summary>
     public static class WebApiConfig
     {
+        /// <summary>
+        /// Register Web Api
+        /// </summary>
+        /// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services

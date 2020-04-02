@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using System;
 using System.Globalization;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
 using FCAI_Shop.Areas.HelpPage.ModelDescriptions;
+// ReSharper disable All
 
 namespace FCAI_Shop.Areas.HelpPage
 {
