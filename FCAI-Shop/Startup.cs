@@ -5,7 +5,6 @@ using FCAI_Shop.DbContext;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-#pragma warning disable 1591
 
 [assembly: OwinStartup(typeof(FCAI_Shop.Startup))]
 
@@ -23,7 +22,7 @@ namespace FCAI_Shop
                 AllowInsecureHttp = true,
 
                 //The Path For generating the Token
-                TokenEndpointPath = new PathString("/Login"),
+                TokenEndpointPath = new PathString("/api/User/Login"),
 
                 //Setting the Token Expired Time (24 hours)
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),

@@ -550,8 +550,6 @@
             Registers for a new user.
             </summary>
             <param name="user"></param>
-            <returns></returns>
-            <exception cref="T:System.Exception"></exception>
         </member>
     </members>
 </doc>

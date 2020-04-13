@@ -21,7 +21,7 @@ namespace FCAI_Shop.DbContext
         
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var user = ApplicationUserRepository.ValidateUser(context.UserName, context.Password);
+            var user = ApplicationUserManager.ValidateUser(context.UserName, context.Password);
             if (user == null)
             {
                 context.SetError("invalid_grant", "Provided username and password is incorrect");

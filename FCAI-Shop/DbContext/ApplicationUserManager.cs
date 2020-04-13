@@ -17,7 +17,7 @@ namespace FCAI_Shop.DbContext
         //private DatabaseManager DbContext = new DatabaseManager(); // for class diagram only
         public static ApplicationUser ValidateUser(string username, string password)
         {
-            using (var context = new DatabaseManager().Create())
+            using (var context = new ShopDbContext())
             {
 
                 var loginByEmail= context.ApplicationUsers.FirstOrDefault(user =>
@@ -34,7 +34,7 @@ namespace FCAI_Shop.DbContext
         }
         public static IEnumerable<ApplicationUserDto> GetAllApplicationUsers()
         {
-            using (var context = new DatabaseManager().Create())
+            using (var context = new ShopDbContext())
             {
                 return context.ApplicationUsers.ToList().Select(applicationUser => applicationUser.ToDto());
             }

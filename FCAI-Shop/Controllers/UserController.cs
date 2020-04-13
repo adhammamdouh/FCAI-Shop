@@ -2,9 +2,10 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FCAI_Shop.Constants;
+using FCAI_Shop.Utility;
 using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
+using FCAI_Shop.DbContext;
 
 namespace FCAI_Shop.Controllers
 {
@@ -12,7 +13,8 @@ namespace FCAI_Shop.Controllers
     /// <summary>
     /// Controller for users
     /// </summary>
-    [Authorize(Roles = Roles.Admin + "," + Roles.User)]
+    [AllowAnonymous]
+    [Route("api/User")]
     public class UserController : ApiController
     {
         //private UserManager UserManager; // for class diagram only
@@ -21,15 +23,17 @@ namespace FCAI_Shop.Controllers
         /// Registers for a new user.
         /// </summary>
         /// <param name="user"></param>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        [AllowAnonymous]
-        [Route("api/User/Register")]
-        public IHttpActionResult Register([FromBody] UserDto user)
+        [Route("Register")]
+        public IHttpActionResult Register([FromBody] ApplicationUserDto user)
         {
             try
             {
-                var id = UserManager.AddUser(user);
+                int? id = null;
+                if (user.Role == Roles.Customer)
+                    id = CustomerManager.AddUser((CustomerDto)user);
+                else if (user.Role == Roles.ShopOwner)
+                    id = ShopOwnerManager.AddUser((ShopOwnerDto)user);
+
                 if (id == null) throw new Exception();
             }
             catch (Exception)
@@ -37,7 +41,7 @@ namespace FCAI_Shop.Controllers
                 return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Failed To Add User"));
             }
 
-            return Ok();
+            return Ok("Registered sucessfully!");
         }
         
     }
