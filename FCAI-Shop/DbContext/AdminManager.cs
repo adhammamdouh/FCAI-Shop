@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using FCAI_Shop.Utility;
-using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
 #pragma warning disable 1591
 
@@ -37,14 +36,14 @@ namespace FCAI_Shop.DbContext
                 return context.Admins.FirstOrDefault(admin => admin.UserName.Equals(adminName));
             }
         }
-        public static int? AddAdmin(AdminDto admin)
+        public static int? AddAdmin(Admin admin)
         {
             /*if (FindAdminByEmail(Admin.Email) != null || FindAdminByUserName(Admin.UserName) != null)
                 return null;*/
             
             using (var context = new ShopDbContext())
             {
-                var addedAdmin = context.Admins.Add(new Admin(admin));
+                var addedAdmin = context.Admins.Add(admin);
 
                 if (context.SaveChanges() == 0)
                     return null; // returns number of affected rows

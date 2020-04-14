@@ -14,7 +14,7 @@ namespace FCAI_Shop.Controllers
     /// Controller for users
     /// </summary>
     [AllowAnonymous]
-    [Route("api/User")]
+    [RoutePrefix("api/User")]
     public class UserController : ApiController
     {
         //private UserManager UserManager; // for class diagram only
@@ -29,19 +29,19 @@ namespace FCAI_Shop.Controllers
             try
             {
                 int? id = null;
-                if (user.Role == Roles.Customer)
-                    id = CustomerManager.AddUser((CustomerDto)user);
+                if (user.Role == Roles.Customer) 
+                    id = CustomerManager.AddUser(new Customer(user));
                 else if (user.Role == Roles.ShopOwner)
-                    id = ShopOwnerManager.AddUser((ShopOwnerDto)user);
+                    id = ShopOwnerManager.AddUser(new ShopOwner(user));
 
                 if (id == null) throw new Exception();
             }
-            catch (Exception)
+            catch (Exception )
             {
                 return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Failed To Add User"));
             }
 
-            return Ok("Registered sucessfully!");
+            return Ok("Registered successfully!");
         }
         
     }

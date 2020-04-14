@@ -526,9 +526,15 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FCAI_Shop.Controllers.AdminController.GetAllUsers">
+        <member name="M:FCAI_Shop.Controllers.AdminController.GetAllCustomers">
             <summary>
-            Gets all users but requires admin privilege.
+            Gets all Customers but requires admin privilege.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FCAI_Shop.Controllers.AdminController.GetAllShopOwners">
+            <summary>
+            Gets all Shop Owners but requires admin privilege.
             </summary>
             <returns></returns>
         </member>

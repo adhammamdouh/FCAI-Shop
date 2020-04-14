@@ -36,13 +36,13 @@ namespace FCAI_Shop.Models
         [StringLength(Utility.Constants.DefaultStringLength)]
         public string UserRoles { get; set; }
 
-        protected ApplicationUser(ApplicationUserDto applicationUser,string userRoles)
+        protected ApplicationUser(ApplicationUserDto applicationUser)
         {
             Name = applicationUser.Name;
             Password = applicationUser.Password;
             Email = applicationUser.Email;
             UserName = applicationUser.UserName;
-            UserRoles = userRoles;
+            UserRoles = applicationUser.Role;
         }
 
         protected ApplicationUser()

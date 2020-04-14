@@ -186,6 +186,11 @@
     <Compile Include="DbContext\ShopDbContext.cs" />
     <Compile Include="DbContext\ShopOwnerManager.cs" />
     <Compile Include="Dtos\ShopOwnerDto.cs" />
+    <Compile Include="Migrations\202004140307189_sprint2.cs" />
+    <Compile Include="Migrations\202004140307189_sprint2.designer.cs">
+      <DependentUpon>202004140307189_sprint2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ShopOwner.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -261,7 +266,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202004140307189_sprint2.resx">
+      <DependentUpon>202004140307189_sprint2.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>

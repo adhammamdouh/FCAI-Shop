@@ -34,7 +34,7 @@ namespace FCAI_Shop.Controllers
         public IEnumerable<ApplicationUserDto> GetAllApplicationUsers()
         {
 
-            return ApplicationUserManager.GetAllApplicationUsers();
+            return ApplicationUserManager.GetAllApplicationUsers().Select(user => user.ToDto());
         }
 
         /// <summary>
@@ -49,13 +49,22 @@ namespace FCAI_Shop.Controllers
         }
 
         /// <summary>
-        /// Gets all users but requires admin privilege.
+        /// Gets all Customers but requires admin privilege.
         /// </summary>
         /// <returns></returns>
-        [Route("GetAllUsers")]
-        public IEnumerable<CustomerDto> GetAllUsers()
+        [Route("GetAllCustomers")]
+        public IEnumerable<CustomerDto> GetAllCustomers()
         {
             return CustomerManager.GetAllUsers().Select(user => user.ToDto());
+        }
+        /// <summary>
+        /// Gets all Shop Owners but requires admin privilege.
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetAllShopOwners")]
+        public IEnumerable<ShopOwnerDto> GetAllShopOwners()
+        {
+            return ShopOwnerManager.GetAllShopOwners().Select(user => user.ToDto());
         }
 
         // no one can register admin unless if he was an admin
@@ -70,7 +79,8 @@ namespace FCAI_Shop.Controllers
         {
             try
             {
-                var id = AdminManager.AddAdmin(admin);
+                admin.Role = Roles.Admin;
+                var id = AdminManager.AddAdmin(new Admin(admin));
                 if (id == null) throw new Exception();
             }
             catch (Exception)
@@ -79,7 +89,7 @@ namespace FCAI_Shop.Controllers
             }
 
             
-            return Ok("Admin registered sucessfully!");
+            return Ok("Admin registered successfully!");
         }
     }
 

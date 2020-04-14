@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using FCAI_Shop.Utility;
 using FCAI_Shop.DbContext;
-using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
 #pragma warning disable 1591
 
@@ -36,14 +35,14 @@ namespace FCAI_Shop.DbContext
                 return context.Customers.FirstOrDefault(user => user.UserName.Equals(userName));
             }
         }
-        public static int? AddUser(CustomerDto user)
+        public static int? AddUser(Customer user)
         {
             /* if (FindUserByEmail(user.Email) != null || FindUserByUserName(user.UserName) != null)
                  return null;*/
 
             using (var context = new ShopDbContext())
             {
-                var addedUser = context.Customers.Add(new Customer(user));
+                var addedUser = context.Customers.Add(user);
 
                 if (context.SaveChanges() == 0)
                     return null;
@@ -51,6 +50,7 @@ namespace FCAI_Shop.DbContext
                 return addedUser.Id;
             }
         }
+
         public static IEnumerable<Customer> GetAllUsers()
         {
             using (var context = new ShopDbContext())

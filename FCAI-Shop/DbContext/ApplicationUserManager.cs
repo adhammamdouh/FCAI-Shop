@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
 using Microsoft.Ajax.Utilities;
 #pragma warning disable 1591
@@ -32,11 +31,11 @@ namespace FCAI_Shop.DbContext
             }
 
         }
-        public static IEnumerable<ApplicationUserDto> GetAllApplicationUsers()
+        public static IEnumerable<ApplicationUser> GetAllApplicationUsers()
         {
             using (var context = new ShopDbContext())
             {
-                return context.ApplicationUsers.ToList().Select(applicationUser => applicationUser.ToDto());
+                return context.ApplicationUsers.ToList();
             }
         }
     }

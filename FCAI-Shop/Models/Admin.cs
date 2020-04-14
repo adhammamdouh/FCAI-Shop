@@ -17,14 +17,14 @@ namespace FCAI_Shop.Models
         {
 
         }
-        public Admin(AdminDto admin) : base(admin,Roles.Admin)
+        public Admin(AdminDto admin) : base(admin)
         {
         }
 
         public new AdminDto ToDto()
         {
-            AdminDto dt = (AdminDto)base.ToDto();
-            return dt;
+            return new AdminDto
+            { Email = Email, Name = Name, Password = "", UserName = UserName, Role = UserRoles };
         }
 
     }

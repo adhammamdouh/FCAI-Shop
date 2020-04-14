@@ -18,13 +18,18 @@ namespace FCAI_Shop.Models
         {
 
         }
-        public Customer(CustomerDto user) : base(user, Roles.Customer)
+
+        public Customer(ApplicationUserDto user) : base(user)
+        {
+
+        }
+        public Customer(CustomerDto user) : base(user)
         {
         }
         public new CustomerDto ToDto()
         {
-            CustomerDto dt = (CustomerDto)base.ToDto();
-            return dt;
+            return new CustomerDto
+            { Email = Email, Name = Name, Password = "", UserName = UserName, Role = UserRoles };
         }
 
     }
