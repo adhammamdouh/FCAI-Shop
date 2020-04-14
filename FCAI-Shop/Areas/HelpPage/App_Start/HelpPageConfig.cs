@@ -68,7 +68,7 @@ namespace FCAI_Shop.Areas.HelpPage
             //// Uncomment the following to use "[0]=foo&[1]=bar" directly as the sample for all actions that support form URL encoded format
             //// and have IEnumerable<string> as the body parameter or return type.
             config.SetSampleForType("[Email]=Email | [Name]=Name | [Password]=Password | [UserName]=UserName", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(AdminDto));
-            config.SetSampleForType("[Email]=Email | [Name]=Name | [Password]=Password | [UserName]=UserName", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(UserDto));
+            config.SetSampleForType("[Email]=Email | [Name]=Name | [Password]=Password | [UserName]=UserName", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(CustomerDto));
             config.SetSampleForType("[Email]=Email | [Name]=Name | [Password]=Password | [UserName]=UserName", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(ApplicationUserDto));
 
             //// Uncomment the following to use "1234" directly as the request sample for media type "text/plain" on the controller named "Values"

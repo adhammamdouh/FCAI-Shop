@@ -23,8 +23,8 @@ namespace FCAI_Shop.Models
         }
         public new CustomerDto ToDto()
         {
-            return new CustomerDto
-            { Email = Email, Name = Name, Password = "", UserName = UserName };
+            CustomerDto dt = (CustomerDto)base.ToDto();
+            return dt;
         }
 
     }

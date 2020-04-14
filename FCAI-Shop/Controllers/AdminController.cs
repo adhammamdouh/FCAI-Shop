@@ -34,7 +34,7 @@ namespace FCAI_Shop.Controllers
         public IEnumerable<ApplicationUserDto> GetAllApplicationUsers()
         {
 
-            return ApplicationUserRepository.GetAllApplicationUsers();
+            return ApplicationUserManager.GetAllApplicationUsers();
         }
 
         /// <summary>

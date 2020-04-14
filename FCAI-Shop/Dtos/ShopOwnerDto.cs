@@ -7,7 +7,7 @@ using FCAI_Shop.Models;
 
 namespace FCAI_Shop.Dtos
 {
-    public class UserDto : ApplicationUserDto
+    public class ShopOwnerDto : ApplicationUserDto
     {
         //private User User; // for class diagram only
     }

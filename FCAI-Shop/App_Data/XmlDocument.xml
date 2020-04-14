@@ -545,7 +545,7 @@
             Controller for users
             </summary>
         </member>
-        <member name="M:FCAI_Shop.Controllers.UserController.Register(FCAI_Shop.Dtos.UserDto)">
+        <member name="M:FCAI_Shop.Controllers.UserController.Register(FCAI_Shop.Dtos.ApplicationUserDto)">
             <summary>
             Registers for a new user.
             </summary>
