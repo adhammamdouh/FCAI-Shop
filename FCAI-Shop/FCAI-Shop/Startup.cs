@@ -26,6 +26,25 @@ namespace FCAI_Shop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
+            // Swagger documentation
+            services.AddSwaggerDocument(config =>
+            {
+                config.PostProcess = document =>
+                {
+                    document.Info.Version = "v1";
+                    document.Info.Title = "FCAI Shop Core";
+                    document.Info.Description = "ASP .Net Core application to simulate online store system";
+                    document.Info.TermsOfService = "None";
+                    document.Info.Contact = new NSwag.OpenApiContact
+                    {
+                        Name = "Belal Hamdy",
+                        Email = "belalhezzat@gmail.com",
+                        Url = "https://github.com/belalhamdy"
+                    };
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +65,10 @@ namespace FCAI_Shop
             {
                 endpoints.MapControllers();
             });
+
+            // Register the Swagger generator and the Swagger UI middlewares
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
         }
     }
 }

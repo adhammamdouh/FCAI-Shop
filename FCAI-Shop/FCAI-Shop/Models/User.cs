@@ -11,7 +11,7 @@ namespace FCAI_Shop.Models
         {
 
         }
-        public User(UserDto user) : base(user, Roles.User)
+        public User(UserDto user) : base(user, Constants.User)
         {
         }
         public new UserDto ToDto()

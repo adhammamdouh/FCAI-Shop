@@ -13,7 +13,7 @@ namespace FCAI_Shop.Models
         {
 
         }
-        public Admin(AdminDto admin) : base(admin, Roles.Admin)
+        public Admin(AdminDto admin) : base(admin, Constants.Admin)
         {
         }
 

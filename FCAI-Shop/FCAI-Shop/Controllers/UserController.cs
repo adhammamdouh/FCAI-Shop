@@ -12,7 +12,7 @@ namespace FCAI_Shop.Controllers
     /// <summary>
     /// Controller for users
     /// </summary>
-    [Authorize(Roles = Roles.Admin + "," + Roles.User)]
+    [Authorize(Roles = Constants.Admin + "," + Constants.User)]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase

@@ -5,6 +5,11 @@
     <RootNamespace>FCAI_Shop</RootNamespace>
     <UserSecretsId>a1de51b7-2305-4485-8a46-50396082b8bb</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>S:\faculty\github\FCAI-Shop-Core\FCAI-Shop\FCAI-Shop\FCAI-Shop\FCAI-Shop.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +20,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.3.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -16,7 +16,6 @@ namespace FCAI_Shop.Models
             //"Server=tcp:web-api.database.windows.net,1433;Initial Catalog=FCAI-Shop;Persist Security Info=False;User ID=belal;Password=FCAI-shop1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             "Server=(localdb)/MSSQLLocalDB;Initial Catalog=FCAI-Shop;Integrated Security=true;";
 
-        //private const string LocalDatabase = "FCAI_Shop"; // (LocalDb)\MSSQLLocalDB
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString);
