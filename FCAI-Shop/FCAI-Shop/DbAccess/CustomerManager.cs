@@ -10,7 +10,6 @@ namespace FCAI_Shop.Models
         public static int? AddCustomer(Customer user)
         {
 
-            if (ApplicationUserRepository.IsValidModel(user)) return null;
 
             using var context = new DatabaseManager().Create();
             var addedUser = context.Customers.Add(user).Entity;

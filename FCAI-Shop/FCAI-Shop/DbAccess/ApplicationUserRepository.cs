@@ -10,9 +10,6 @@ namespace FCAI_Shop.DbAccess
     // To validate user and returns user data
     public static class ApplicationUserRepository
     {
-        // username maybe email or username
-        //private static ApplicationUser user; // for class diagram only
-        //private DatabaseManager DbContext = new DatabaseManager(); // for class diagram only
         public static ApplicationUser ValidateUser(string username, string password)
         {
             var user = GetUserByUsername(username) ?? GetUserByEmail(username);
@@ -40,10 +37,5 @@ namespace FCAI_Shop.DbAccess
                 user.UserName.Equals(username));
         }
 
-
-        public static bool IsValidModel(ApplicationUser user)
-        {
-            return (GetUserByEmail(user.Email) == default && GetUserByUsername(user.Name) == default && Validators.IsEmail(user.Email));
-        }
     }
 }

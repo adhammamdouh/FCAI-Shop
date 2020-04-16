@@ -102,13 +102,22 @@ namespace FCAI_Shop
 
             // Register the Swagger generator and the Swagger UI middlewares
             app.UseOpenApi();
-            app.UseSwaggerUi3();
+            app.UseSwaggerUi3(config => config.TransformToExternalPath = (internalUiRoute, request) =>
+            {
+                if (internalUiRoute.StartsWith("/") && internalUiRoute.StartsWith(request.PathBase) == false)
+                {
+                    return request.PathBase + internalUiRoute;
+                }
+
+                return internalUiRoute;
+            });
 
             // global cors policy
             app.UseCors(x => x
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
+
 
 
         }

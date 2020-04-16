@@ -48,5 +48,10 @@
             <returns></returns>
             <exception cref="T:System.Exception"></exception>
         </member>
+        <member name="T:FCAI_Shop._Utilities.UniqueKeyAttribute">
+            <summary>
+            Specifies that a data field value is unique across the table.
+            </summary>
+        </member>
     </members>
 </doc>

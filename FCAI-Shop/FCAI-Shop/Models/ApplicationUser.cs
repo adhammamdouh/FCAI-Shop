@@ -12,13 +12,13 @@ namespace FCAI_Shop.Models
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required ,StringLength(Constants.DefaultStringLength)]
+        [Required, UniqueKey, StringLength(Constants.DefaultStringLength), DataType(DataType.EmailAddress), EmailAddress]
         public string Email { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        [Required, StringLength(Constants.DefaultStringLength)]
+        [Required, UniqueKey, StringLength(Constants.DefaultStringLength)]
         public string UserName { get; set; }
 
         [Required, StringLength(Constants.DefaultStringLength)]
