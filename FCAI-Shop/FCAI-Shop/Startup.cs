@@ -84,7 +84,6 @@ namespace FCAI_Shop
                     document.Info.Title = "FCAI Shop";
                     document.Info.Description = "ASP.Net Core Application. Simulates online store.";
                     document.Info.TermsOfService = "None";
-                    document.Info.Contact = null;
                 };
             });
         }
@@ -109,14 +108,18 @@ namespace FCAI_Shop
 
             // Register the Swagger generator and the Swagger UI middlewares
             app.UseOpenApi();
-            app.UseSwaggerUi3(config => config.TransformToExternalPath = (internalUiRoute, request) =>
-            {
-                if (internalUiRoute.StartsWith("/") && internalUiRoute.StartsWith(request.PathBase) == false)
+            app.UseSwaggerUi3(config => {
+                config.TransformToExternalPath = (internalUiRoute, request) =>
                 {
-                    return request.PathBase + internalUiRoute;
-                }
+                    if (internalUiRoute.StartsWith("/") && internalUiRoute.StartsWith(request.PathBase) == false)
+                    {
+                        return request.PathBase + internalUiRoute;
+                    }
 
-                return internalUiRoute;
+                    return internalUiRoute;
+                };
+                config.DocumentTitle = "FCAI Shop API Documentation";
+                config.Path = "/docs";
             });
 
             // global cors policy
@@ -124,9 +127,6 @@ namespace FCAI_Shop
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-
-
-
         }
     }
 }

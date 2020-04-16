@@ -5,6 +5,7 @@
     <RootNamespace>FCAI_Shop</RootNamespace>
     <UserSecretsId>a1de51b7-2305-4485-8a46-50396082b8bb</UserSecretsId>
     <LangVersion>8</LangVersion>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,6 +28,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     
     <PackageReference Include="NSwag.AspNetCore" Version="13.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
