@@ -1,35 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FCAI_Shop._Utilities;
 using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
 
 namespace FCAI_Shop.DbAccess
 {
     // To validate user and returns user data
-    public  class ApplicationUserRepository
+    public static class ApplicationUserRepository
     {
         // username maybe email or username
         //private static ApplicationUser user; // for class diagram only
         //private DatabaseManager DbContext = new DatabaseManager(); // for class diagram only
         public static ApplicationUser ValidateUser(string username, string password)
         {
-            using var context = new DatabaseManager().Create();
-            var loginByEmail = context.ApplicationUsers.FirstOrDefault(user =>
-                 user.Email.Equals(username, StringComparison.OrdinalIgnoreCase)
-                 && user.Password == password);
-
-            if (loginByEmail == default) return context.ApplicationUsers.FirstOrDefault(user =>
-                user.UserName.Equals(username, StringComparison.OrdinalIgnoreCase)
-                && user.Password == password);
-
-            return loginByEmail;
-
+            var user = GetUserByUsername(username) ?? GetUserByEmail(username);
+            if (user == default) return default;
+            return user.Password.Equals(password) ? user : default;
         }
+
         public static IEnumerable<ApplicationUserDto> GetAllApplicationUsers()
         {
             using var context = new DatabaseManager().Create();
             return context.ApplicationUsers.ToList().Select(applicationUser => applicationUser.ToDto());
+        }
+
+        public static ApplicationUser GetUserByEmail(string email)
+        {
+            using var context = new DatabaseManager().Create();
+            return context.ApplicationUsers.FirstOrDefault(user =>
+                user.Email.Equals(email));
+        }
+
+        public static ApplicationUser GetUserByUsername(string username)
+        {
+            using var context = new DatabaseManager().Create();
+            return context.ApplicationUsers.FirstOrDefault(user =>
+                user.UserName.Equals(username));
+        }
+
+
+        public static bool IsValidModel(ApplicationUser user)
+        {
+            return (GetUserByEmail(user.Email) == default && GetUserByUsername(user.Name) == default && Validators.IsEmail(user.Email));
         }
     }
 }

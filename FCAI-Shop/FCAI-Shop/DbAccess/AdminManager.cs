@@ -6,7 +6,7 @@ using FCAI_Shop.Models;
 
 namespace FCAI_Shop.DbAccess
 {
-    public class AdminManager
+    public static class AdminManager
     {
 
         //private static Admin admin; // for class diagram only
@@ -28,23 +28,23 @@ namespace FCAI_Shop.DbAccess
             using var context = new DatabaseManager().Create();
             return context.Admins.FirstOrDefault(admin => admin.UserName.Equals(adminName));
         }
-        public static int? AddAdmin(AdminDto admin)
+        public static int? AddAdmin(Admin admin)
         {
-            /*if (FindAdminByEmail(Admin.Email) != null || FindAdminByUserName(Admin.UserName) != null)
-                return null;*/
+
+            if (ApplicationUserRepository.IsValidModel(admin)) return null;
 
             using var context = new DatabaseManager().Create();
-            var addedAdmin = context.Admins.Add(new Admin(admin)).Entity;
+            var addedAdmin = context.Admins.Add(admin).Entity;
 
             if (context.SaveChanges() == 0)
                 return null; // returns number of affected rows
 
             return addedAdmin.Id;
         }
-        public static IEnumerable<Admin> GetAllAdmins()
+        public static IEnumerable<AdminDto> GetAllAdmins()
         {
             using var context = new DatabaseManager().Create();
-            return context.Admins.ToList();
+            return context.Admins.ToList().Select(user => user.ToDto());
         }
     }
 }

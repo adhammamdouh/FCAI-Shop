@@ -21,7 +21,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FCAI_Shop.Controllers.AdminController.GetAllUsers">
+        <member name="M:FCAI_Shop.Controllers.AdminController.GetAllCustomers">
             <summary>
             Gets all users but requires admin privilege.
             </summary>
@@ -40,18 +40,13 @@
             Controller for users
             </summary>
         </member>
-        <member name="M:FCAI_Shop.Controllers.UserController.Register(FCAI_Shop.Dtos.UserDto)">
+        <member name="M:FCAI_Shop.Controllers.UserController.Register(FCAI_Shop.Dtos.ApplicationUserDto)">
             <summary>
             Registers for a new user.
             </summary>
             <param name="user"></param>
             <returns></returns>
             <exception cref="T:System.Exception"></exception>
-        </member>
-        <member name="T:FCAI_Shop._Utilities.UniqueKeyAttribute">
-            <summary>
-            Specifies that a data field value is unique across the table.
-            </summary>
         </member>
     </members>
 </doc>

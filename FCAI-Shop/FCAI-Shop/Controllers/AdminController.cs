@@ -29,10 +29,10 @@ namespace FCAI_Shop.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetAllApplicationUsers")]
-        public IEnumerable<ApplicationUserDto> GetAllApplicationUsers()
+        public IActionResult GetAllApplicationUsers()
         {
 
-            return ApplicationUserRepository.GetAllApplicationUsers();
+            return Ok(ApplicationUserRepository.GetAllApplicationUsers());
         }
 
         /// <summary>
@@ -40,10 +40,9 @@ namespace FCAI_Shop.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetAllAdmins")]
-        public IEnumerable<AdminDto> GetAllAdmins()
+        public IActionResult GetAllAdmins()
         {
-            //return AdminManager.GetAllAdmins().Select(admin => admin.ToViewModel());
-            return AdminManager.GetAllAdmins().Select(admin => admin.ToDto());
+            return Ok(AdminManager.GetAllAdmins());
         }
 
         /// <summary>
@@ -51,9 +50,9 @@ namespace FCAI_Shop.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetAllUsers")]
-        public IEnumerable<UserDto> GetAllUsers()
+        public IActionResult GetAllCustomers()
         {
-            return UserManager.GetAllUsers().Select(user => user.ToDto());
+            return Ok(CustomerManager.GetAllCustomers());
         }
 
         // no one can register admin unless if he was an admin
@@ -64,16 +63,16 @@ namespace FCAI_Shop.Controllers
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
         [Route("Register")]
-        public ActionResult Register([FromBody] AdminDto admin)
+        public IActionResult Register([FromBody] AdminDto admin)
         {
             try
             {
-                var id = AdminManager.AddAdmin(admin);
+                var id = AdminManager.AddAdmin(new Admin(admin));
                 if (id == null) throw new Exception();
             }
             catch (Exception)
             {
-                Problem("Failed To Add Admin", null, (int)HttpStatusCode.InternalServerError);
+                return Problem("Failed To Add Admin", null, (int)HttpStatusCode.InternalServerError);
             }
 
             

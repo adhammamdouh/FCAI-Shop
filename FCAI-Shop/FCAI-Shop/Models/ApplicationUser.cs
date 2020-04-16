@@ -12,28 +12,29 @@ namespace FCAI_Shop.Models
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required, UniqueKey, StringLength(Constants.DefaultStringLength), DataType(DataType.EmailAddress), EmailAddress]
+        [Required ,StringLength(Constants.DefaultStringLength)]
         public string Email { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        [Required, UniqueKey, StringLength(Constants.DefaultStringLength)]
+        [Required, StringLength(Constants.DefaultStringLength)]
         public string UserName { get; set; }
 
         [Required, StringLength(Constants.DefaultStringLength)]
         public string Password { get; set; }
 
         [StringLength(Constants.DefaultStringLength)]
-        public string UserRoles { get; set; }
+        public string Role { get; set; }
 
-        protected ApplicationUser(ApplicationUserDto applicationUser, string userRoles)
+
+        protected ApplicationUser(ApplicationUserDto applicationUser, string role)
         {
             Name = applicationUser.Name;
             Password = applicationUser.Password;
             Email = applicationUser.Email;
             UserName = applicationUser.UserName;
-            UserRoles = userRoles;
+            Role = role;
         }
 
         protected ApplicationUser()
@@ -43,7 +44,7 @@ namespace FCAI_Shop.Models
         public ApplicationUserDto ToDto()
         {
             return new ApplicationUserDto
-            { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName };
+            { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName ,Role = Role};
         }
     }
 }
