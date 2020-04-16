@@ -6,21 +6,27 @@ using FCAI_Shop.Dtos;
 
 namespace FCAI_Shop.Models
 {
-    [Table("Admins")]
-    public class Admin : ApplicationUser
+    [Table("Customers")]
+    public class Customer : ApplicationUser
     {
 
-        public Admin()
+
+        public Customer()
         {
 
         }
-        public Admin(AdminDto admin) : base(admin, Constants.Roles.Admin)
+
+        public Customer(ApplicationUserDto user) : base(user, Constants.Roles.Customer)
+        {
+
+        }
+        public Customer(CustomerDto customer) : base(customer, Constants.Roles.Customer)
         {
         }
 
-        public new AdminDto ToDto()
+        public new CustomerDto ToDto()
         {
-            return new AdminDto
+            return new CustomerDto
             { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName,Role = Role };
         }
 

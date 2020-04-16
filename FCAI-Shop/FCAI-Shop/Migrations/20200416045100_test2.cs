@@ -2,7 +2,7 @@
 
 namespace FCAI_Shop.Migrations
 {
-    public partial class test : Migration
+    public partial class test2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace FCAI_Shop.Migrations
                     Name = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: false),
                     Password = table.Column<string>(maxLength: 256, nullable: false),
-                    UserRoles = table.Column<string>(maxLength: 256, nullable: true),
+                    Role = table.Column<string>(maxLength: 256, nullable: true),
                     Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>

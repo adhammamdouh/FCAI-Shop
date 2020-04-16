@@ -25,15 +25,16 @@ namespace FCAI_Shop.Models
         public string Password { get; set; }
 
         [StringLength(Constants.DefaultStringLength)]
-        public string UserRoles { get; set; }
+        public string Role { get; set; }
 
-        protected ApplicationUser(ApplicationUserDto applicationUser, string userRoles)
+
+        protected ApplicationUser(ApplicationUserDto applicationUser, string role)
         {
             Name = applicationUser.Name;
             Password = applicationUser.Password;
             Email = applicationUser.Email;
             UserName = applicationUser.UserName;
-            UserRoles = userRoles;
+            Role = role;
         }
 
         protected ApplicationUser()
@@ -43,7 +44,7 @@ namespace FCAI_Shop.Models
         public ApplicationUserDto ToDto()
         {
             return new ApplicationUserDto
-            { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName };
+            { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName ,Role = Role};
         }
     }
 }

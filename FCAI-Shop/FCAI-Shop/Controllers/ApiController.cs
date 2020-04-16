@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FCAI_Shop.DbAccess;
+using FCAI_Shop.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FCAI_Shop.Controllers
 {
@@ -8,6 +10,7 @@ namespace FCAI_Shop.Controllers
     {
         public string Online()
         {
+
             return "Api is online.";
         }
     }

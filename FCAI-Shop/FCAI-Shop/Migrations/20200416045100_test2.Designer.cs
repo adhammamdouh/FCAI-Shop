@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FCAI_Shop.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20200413215627_test")]
-    partial class test
+    [Migration("20200416045100_test2")]
+    partial class test2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,12 +45,12 @@ namespace FCAI_Shop.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<string>("UserRoles")
+                    b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
@@ -70,13 +70,22 @@ namespace FCAI_Shop.Migrations
                     b.HasDiscriminator().HasValue("Admin");
                 });
 
-            modelBuilder.Entity("FCAI_Shop.Models.User", b =>
+            modelBuilder.Entity("FCAI_Shop.Models.Customer", b =>
                 {
                     b.HasBaseType("FCAI_Shop.Models.ApplicationUser");
 
-                    b.ToTable("Users");
+                    b.ToTable("Customers");
 
-                    b.HasDiscriminator().HasValue("User");
+                    b.HasDiscriminator().HasValue("Customer");
+                });
+
+            modelBuilder.Entity("FCAI_Shop.Models.ShopOwner", b =>
+                {
+                    b.HasBaseType("FCAI_Shop.Models.ApplicationUser");
+
+                    b.ToTable("ShopOwners");
+
+                    b.HasDiscriminator().HasValue("ShopOwner");
                 });
 #pragma warning restore 612, 618
         }
