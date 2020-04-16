@@ -1,4 +1,4 @@
-﻿
+﻿    
 namespace FCAI_Shop.Dtos
 {
     public class ApplicationUserDto

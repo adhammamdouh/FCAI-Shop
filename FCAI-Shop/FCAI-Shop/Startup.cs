@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using FCAI_Shop.Services;
@@ -34,46 +35,56 @@ namespace FCAI_Shop
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("JWTSettings");
-            services.Configure<JWTSettings>(appSettingsSection);
 
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<JWTSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            
             services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.Events = new JwtBearerEvents
                 {
-                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(x =>
-                {
-                    x.RequireHttpsMetadata = false;
-                    x.SaveToken = true;
-                    x.TokenValidationParameters = new TokenValidationParameters
+                    OnTokenValidated = context =>
                     {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateIssuer = false,
-                        ValidateAudience = false
-                    };
-                });
+                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        var userId = int.Parse(context.Principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.SerialNumber).Value);
+                        var user = userService.UserExists(userId);
+                        if (!user) //User no longer exists
+                            context.Fail("Unauthorized");
+
+                        return Task.CompletedTask;
+                    }
+                };
+            x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
             // configure DI for application services
+            services.Configure<JWTSettings>(appSettingsSection);
             services.AddScoped<IUserService, UserService>();
+
             // Swagger documentation
             services.AddSwaggerDocument(config =>
             {
                 config.PostProcess = document =>
                 {
-                    document.Info.Version = "v1";
-                    document.Info.Title = "FCAI Shop Core";
-                    document.Info.Description = "ASP .Net Core application to simulate online store system";
+                    document.Info.Version = "v1.0";
+                    document.Info.Title = "FCAI Shop";
+                    document.Info.Description = "ASP.Net Core Application. Simulates online store.";
                     document.Info.TermsOfService = "None";
-                    document.Info.Contact = new NSwag.OpenApiContact
-                    {
-                        Name = "Belal Hamdy",
-                        Email = "belalhezzat@gmail.com",
-                        Url = "https://github.com/belalhamdy"
-                    };
+                    document.Info.Contact = null;
                 };
             });
         }
@@ -83,16 +94,12 @@ namespace FCAI_Shop
         {
 
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthentication();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

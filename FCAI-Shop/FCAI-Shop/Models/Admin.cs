@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using FCAI_Shop._Utilities;
+using FCAI_Shop.Utilities;
 using FCAI_Shop.Dtos;
 
 namespace FCAI_Shop.Models

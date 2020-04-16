@@ -10,7 +10,8 @@ namespace FCAI_Shop.Services
 {
     public interface IUserService
     {
-        string Authenticate(string username, string password);
+        string Authenticate(string username, string password, DateTime expires);
+        bool UserExists(int id);
     }
     public class UserService : IUserService
     {
@@ -20,14 +21,17 @@ namespace FCAI_Shop.Services
         {
             _appSettings = appSettings.Value;
         }
-
-        public string Authenticate(string username, string password)
+        public bool UserExists(int id)
         {
-            var user = ApplicationUserRepository.ValidateUser(username, password);
+            return ApplicationUserManager.UserExists(id);
+        }
+
+        public string Authenticate(string username, string password, DateTime expires)
+        {
+            var user = ApplicationUserManager.ValidateUser(username, password);
 
             // return null if user not found
-            if (user == null)
-                throw new Exception("Authentication Failed");
+            if (user == null) return null;
 
             // authentication successful so generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -36,10 +40,11 @@ namespace FCAI_Shop.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
+                    new Claim(ClaimTypes.SerialNumber, user.Id.ToString()),
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Role, user.Role)
                 }),
-                Expires = DateTime.UtcNow.AddDays(1),
+                Expires = expires,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

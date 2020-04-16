@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FCAI_Shop.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20200416045100_test2")]
-    partial class test2
+    [Migration("20200416115928_azure_initial")]
+    partial class azure_initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,10 @@ namespace FCAI_Shop.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("Email");
+
+                    b.HasAlternateKey("UserName");
 
                     b.ToTable("ApplicationUsers");
 

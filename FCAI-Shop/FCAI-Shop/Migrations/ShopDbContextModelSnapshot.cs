@@ -54,6 +54,10 @@ namespace FCAI_Shop.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("Email");
+
+                    b.HasAlternateKey("UserName");
+
                     b.ToTable("ApplicationUsers");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");

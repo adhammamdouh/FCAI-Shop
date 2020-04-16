@@ -12,7 +12,7 @@ namespace FCAI_Shop.DbAccess
         public static int? AddAdmin(Admin admin)
         {
 
-            using var context = new DatabaseManager().Create();
+            using var context = new ShopDbContext();
             var addedAdmin = context.Admins.Add(admin).Entity;
 
             if (context.SaveChanges() == 0)
@@ -22,7 +22,7 @@ namespace FCAI_Shop.DbAccess
         }
         public static IEnumerable<AdminDto> GetAllAdmins()
         {
-            using var context = new DatabaseManager().Create();
+            using var context = new ShopDbContext();
             return context.Admins.ToList().Select(user => user.ToDto());
         }
     }

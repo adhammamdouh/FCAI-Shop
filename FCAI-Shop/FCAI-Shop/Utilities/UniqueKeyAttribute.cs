@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace FCAI_Shop._Utilities
+namespace FCAI_Shop.Utilities
 {
     /// <summary>
     /// Specifies that a data field value is unique across the table.
@@ -32,7 +32,6 @@ namespace FCAI_Shop._Utilities
                 BindingFlags.Static |
                 BindingFlags.Instance |
                 BindingFlags.DeclaredOnly);
-
             return propInfo != null && propInfo.GetCustomAttribute<UniqueKeyAttribute>() != null;
         }
     }

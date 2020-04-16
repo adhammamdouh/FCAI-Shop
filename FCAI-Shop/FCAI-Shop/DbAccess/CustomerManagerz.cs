@@ -9,9 +9,7 @@ namespace FCAI_Shop.Models
     {
         public static int? AddCustomer(Customer user)
         {
-
-
-            using var context = new DatabaseManager().Create();
+            using var context = new ShopDbContext();
             var addedUser = context.Customers.Add(user).Entity;
 
             if (context.SaveChanges() == 0)
@@ -21,7 +19,7 @@ namespace FCAI_Shop.Models
         }
         public static IEnumerable<CustomerDto> GetAllCustomers()
         {
-            using var context = new DatabaseManager().Create();
+            using var context = new ShopDbContext();
             return context.Customers.ToList().Select(user => user.ToDto());
         }
     }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using FCAI_Shop.Dtos;
 using Microsoft.EntityFrameworkCore;
-using FCAI_Shop._Utilities;
+using FCAI_Shop.Utilities;
 
 namespace FCAI_Shop.Models
 {
@@ -23,7 +23,6 @@ namespace FCAI_Shop.Models
 
         [Required, StringLength(Constants.DefaultStringLength)]
         public string Password { get; set; }
-
         [StringLength(Constants.DefaultStringLength)]
         public string Role { get; set; }
 

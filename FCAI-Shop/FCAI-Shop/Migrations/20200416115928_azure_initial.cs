@@ -2,7 +2,7 @@
 
 namespace FCAI_Shop.Migrations
 {
-    public partial class test2 : Migration
+    public partial class azure_initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,8 @@ namespace FCAI_Shop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ApplicationUsers", x => x.Id);
+                    table.UniqueConstraint("AK_ApplicationUsers_Email", x => x.Email);
+                    table.UniqueConstraint("AK_ApplicationUsers_UserName", x => x.UserName);
                 });
         }
 
