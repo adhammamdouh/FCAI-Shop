@@ -5,12 +5,13 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using FCAI_Shop.DbAccess;
+using FCAI_Shop.Models;
 
 namespace FCAI_Shop.Services
 {
     public interface IUserService
     {
-        string Authenticate(string username, string password, DateTime expires);
+        string Authenticate(ApplicationUser user, DateTime expires);
         bool UserExists(int id);
     }
     public class UserService : IUserService
@@ -26,13 +27,8 @@ namespace FCAI_Shop.Services
             return ApplicationUserManager.UserExists(id);
         }
 
-        public string Authenticate(string username, string password, DateTime expires)
+        public string Authenticate(ApplicationUser user, DateTime expires)
         {
-            var user = ApplicationUserManager.ValidateUser(username, password);
-
-            // return null if user not found
-            if (user == null) return null;
-
             // authentication successful so generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);

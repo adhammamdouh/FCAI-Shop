@@ -29,11 +29,13 @@ namespace FCAI_Shop.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody]AuthenticateDto model)
         {
-            var expires = DateTime.Now.AddDays(1);
-            var token = _userService.Authenticate(model.Username, model.Password, expires);
+            var user = ApplicationUserManager.ValidateUser(model.Username, model.Password);
 
-            if (token == null)
+            if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
+
+            var expires = DateTime.Now.AddDays(1);
+            var token = _userService.Authenticate(user, expires);
 
             return Ok(new
             {
