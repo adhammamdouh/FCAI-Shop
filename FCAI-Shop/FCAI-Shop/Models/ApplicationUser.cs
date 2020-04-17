@@ -43,7 +43,7 @@ namespace FCAI_Shop.Models
         public ApplicationUserDto ToDto()
         {
             return new ApplicationUserDto
-            { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName ,Role = Role};
+            { Email = Email, Name = Name, Password = "hidden", UserName = UserName ,Role = Role};
         }
     }
 }
