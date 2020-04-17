@@ -9,7 +9,7 @@ namespace FCAI_Shop.DbAccess
 {
     public static class ShopOwnerManager
     {
-        public static int? AddCustomer(ShopOwner user)
+        public static int? AddShopOwner(ShopOwner user)
         {
             using var context = new ShopDbContext();
             var addedUser = context.ShopOwners.Add(user).Entity;

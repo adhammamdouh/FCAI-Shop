@@ -46,13 +46,22 @@ namespace FCAI_Shop.Controllers
         }
 
         /// <summary>
-        /// Gets all users but requires admin privilege.
+        /// Gets all customers but requires admin privilege.
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetAllUsers")]
+        [HttpGet("GetAllCustomers")]
         public IActionResult GetAllCustomers()
         {
             return Ok(CustomerManager.GetAllCustomers());
+        }
+        /// <summary>
+        /// Gets all customers but requires admin privilege.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllShopOwners")]
+        public IActionResult GetAllShopOwners()
+        {
+            return Ok(ShopOwnerManager.GetAllShopOwners());
         }
 
         // no one can register admin unless if he was an admin
@@ -64,7 +73,7 @@ namespace FCAI_Shop.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromBody] AdminDto admin)
         {
-            admin.Password = Utilities.Procedures.HashPassword(admin.Password);
+            admin.Password = Procedures.HashPassword(admin.Password);
             try
             {
                 var id = AdminManager.AddAdmin(new Admin(admin));
@@ -75,7 +84,7 @@ namespace FCAI_Shop.Controllers
                 return Problem("Failed To Add Admin", null, (int)HttpStatusCode.InternalServerError);
             }
 
-            return Ok();
+            return Ok("Admin added!");
         }
     }
 
