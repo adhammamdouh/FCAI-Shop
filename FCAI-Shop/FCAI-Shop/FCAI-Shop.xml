@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FCAI-Shop</name>
+    </assembly>
+    <members>
+        <member name="T:FCAI_Shop.Controllers.AdminController">
+            <summary>
+            Controller for admins
+            </summary>
+        </member>
+        <member name="M:FCAI_Shop.Controllers.AdminController.GetAllApplicationUsers">
+            <summary>
+            Gets all application users (Admins and Users) but requires admin privilege.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FCAI_Shop.Controllers.AdminController.GetAllAdmins">
+            <summary>
+            Gets all admins but requires admin privilege.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FCAI_Shop.Controllers.AdminController.GetAllCustomers">
+            <summary>
+            Gets all users but requires admin privilege.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FCAI_Shop.Controllers.AdminController.Register(FCAI_Shop.Dtos.AdminDto)">
+            <summary>
+            Registers for admin but requires admin privilege.
+            </summary>
+            <param name="admin"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:FCAI_Shop.Controllers.UserController">
+            <summary>
+            Controller for users
+            </summary>
+        </member>
+        <member name="M:FCAI_Shop.Controllers.UserController.Register(FCAI_Shop.Dtos.ApplicationUserDto)">
+            <summary>
+            Registers for a new user.
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:FCAI_Shop._Utilities.UniqueKeyAttribute">
+            <summary>
+            Specifies that a data field value is unique across the table.
+            </summary>
+        </member>
+    </members>
+</doc>
