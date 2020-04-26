@@ -1,9 +1,8 @@
-﻿using System;
+﻿using FCAI_Shop.Dtos;
+using FCAI_Shop.Models;
+using FCAI_Shop.Utilities;
 using System.Collections.Generic;
 using System.Linq;
-using FCAI_Shop.Utilities;
-using FCAI_Shop.Dtos;
-using FCAI_Shop.Models;
 
 namespace FCAI_Shop.DbAccess
 {

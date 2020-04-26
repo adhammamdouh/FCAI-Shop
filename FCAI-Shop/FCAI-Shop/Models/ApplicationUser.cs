@@ -1,9 +1,8 @@
-﻿using System;
+﻿using FCAI_Shop.Dtos;
+using FCAI_Shop.Utilities;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using FCAI_Shop.Dtos;
-using Microsoft.EntityFrameworkCore;
-using FCAI_Shop.Utilities;
 
 namespace FCAI_Shop.Models
 {
@@ -29,6 +28,8 @@ namespace FCAI_Shop.Models
 
         protected ApplicationUser(ApplicationUserDto applicationUser, string role)
         {
+            if (!Procedures.isValidMail(applicationUser.Email)) throw new Exception("Please enter a valid email address.");
+
             Name = applicationUser.Name;
             Password = applicationUser.Password;
             Email = applicationUser.Email;
@@ -43,7 +44,7 @@ namespace FCAI_Shop.Models
         public ApplicationUserDto ToDto()
         {
             return new ApplicationUserDto
-            { Email = Email, Name = Name, Password = "hidden", UserName = UserName ,Role = Role};
+            { Email = Email, Name = Name, Password = "hidden", UserName = UserName, Role = Role };
         }
     }
 }

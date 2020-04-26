@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using FCAI_Shop.Services;
-using FCAI_Shop.Utilities;
+﻿using FCAI_Shop.DbAccess;
 using FCAI_Shop.Dtos;
 using FCAI_Shop.Models;
-using Microsoft.Extensions.Options;
-using FCAI_Shop.DbAccess;
+using FCAI_Shop.Services;
+using FCAI_Shop.Utilities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace FCAI_Shop.Controllers
 {

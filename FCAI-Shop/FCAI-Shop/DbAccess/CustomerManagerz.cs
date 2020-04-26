@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using FCAI_Shop.Dtos;
+using System.Collections.Generic;
 using System.Linq;
-using FCAI_Shop.DbAccess;
-using FCAI_Shop.Dtos;
 
 namespace FCAI_Shop.Models
 {
@@ -14,7 +13,7 @@ namespace FCAI_Shop.Models
 
             if (context.SaveChanges() == 0)
                 return null;
-            
+
             return addedUser.Id;
         }
         public static IEnumerable<CustomerDto> GetAllCustomers()

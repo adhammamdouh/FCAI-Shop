@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace FCAI_Shop.Utilities
 {
