@@ -21,7 +21,7 @@ namespace FCAI_Shop.Models
         public new AdminDto ToDto()
         {
             return new AdminDto
-            { Email = Email, Name = Name, Password = "".PadRight(Password.Length, '*'), UserName = UserName,Role = Role };
+            { Email = Email, Name = Name, Password = "hidden", UserName = UserName,Role = Role };
         }
 
     }

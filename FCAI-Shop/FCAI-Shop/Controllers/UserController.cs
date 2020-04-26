@@ -56,15 +56,15 @@ namespace FCAI_Shop.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromBody] ApplicationUserDto user)
         {
-            user.Password = Utilities.Procedures.HashPassword(user.Password);
+            user.Password = Procedures.HashPassword(user.Password);
             try
             {
                 int? id;
 
                 if (user.Role.ToLower() == Constants.Roles.Customer.ToLower())
                     id = CustomerManager.AddCustomer(new Customer(user));
-                else if (user.Role.ToLower() == Constants.Roles.Customer.ToLower())
-                    id = ShopOwnerManager.AddCustomer(new ShopOwner(user));
+                else if (user.Role.ToLower() == Constants.Roles.ShopOwner.ToLower())
+                    id = ShopOwnerManager.AddShopOwner(new ShopOwner(user));
                 else
                     return Problem($"Role is invalid, must be either {Constants.Roles.Customer} or {Constants.Roles.ShopOwner}");
 
@@ -75,7 +75,7 @@ namespace FCAI_Shop.Controllers
                 return Problem("Failed To Add User", null, (int)System.Net.HttpStatusCode.InternalServerError);
             }
 
-            return Ok();
+            return Ok($"{user.Role} added!");
         }
     }
 }

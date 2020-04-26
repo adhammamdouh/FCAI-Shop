@@ -39,7 +39,7 @@ namespace FCAI_Shop
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<JWTSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            
+
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -60,7 +60,7 @@ namespace FCAI_Shop
                         return Task.CompletedTask;
                     }
                 };
-            x.RequireHttpsMetadata = false;
+                x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -78,8 +78,17 @@ namespace FCAI_Shop
             // Swagger documentation
             services.AddSwaggerDocument(config =>
             {
+
                 config.PostProcess = document =>
                 {
+                    var pathsToRemove = document.Paths
+.Where(pathItem => !pathItem.Key.Contains("api/"))
+.ToList();
+
+                    foreach (var item in pathsToRemove)
+                    {
+                        document.Paths.Remove(item.Key);
+                    }
                     document.Info.Version = "v1.0";
                     document.Info.Title = "FCAI Shop";
                     document.Info.Description = "ASP.Net Core Application. Simulates online store.";
